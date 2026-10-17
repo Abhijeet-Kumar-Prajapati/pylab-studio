@@ -245,7 +245,7 @@ HEAD = """<!DOCTYPE html>
 INDEX_HTML = page("PyLab Studio", body="""
 <section class="hero"><div class="wrap">
   <span class="pill">132 Python programs &middot; runs in your browser</span>
-  <h1>Every program,<br>right in the browser.</h1>
+  <h1>Every program,<br>one click away.</h1>
   <p class="lead">Maths, converters, string tools, games, finance and health.
      No install, no server, no internet needed.</p>
   <div class="cta">
