@@ -6,7 +6,6 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-3.x-black.svg)](https://flask.palletsprojects.com/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Programs](https://img.shields.io/badge/programs-132%20%7C%209%20categories-informational.svg)]()
 
 **Live demo:** <https://abhijeet-kumar-prajapati.github.io/pylab-studio/>
@@ -213,9 +212,3 @@ py generate_reports.py       # regenerate reports/
 - Python 3.8+
 - Flask (website only) — `pip install -r requirements-all.txt`
 - Everything else is standard library
-
----
-
-## License
-
-MIT — see [LICENSE](LICENSE).
