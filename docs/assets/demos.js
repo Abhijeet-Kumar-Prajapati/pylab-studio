@@ -26,7 +26,10 @@
       ? String.fromCharCode(65 + ((ch.charCodeAt(0) - 65 + k) % 26 + 26) % 26)
       : ch;
 
-  const MIXED = ["calorie_estimate", "mad_libs", "rock_paper_scissors", "computer", "guess_number_game", "caesar_encrypt", "caesar_decrypt"];
+  const MIXED = ["calorie_estimate", "mad_libs", "rock_paper_scissors", "guess_number_game", "caesar_encrypt", "caesar_decrypt"];
+
+  // Programs that need no input at all, so the runner must not demand any.
+  const NOINPUT = ["ascii_art", "current_time", "system_info", "timestamp", "uuid_generator"];
 
   const QUOTES = [
     "Simplicity is the soul of efficiency. - Austin Freeman",
@@ -37,13 +40,6 @@
     "Knowledge is power. - Francis Bacon",
     "Code is like humor. When you have to explain it, it is bad. - Cory House",
   ];
-  const CHAT = {
-    hello: ["Hi there!", "Hello!", "Greetings!"],
-    hi: ["Hi there!", "Hello!", "Hey!"],
-    name: ["I'm Computer AI.", "You can call me Computer."],
-    help: ["Try: hello, how are you, name, or bye."],
-    bye: ["Goodbye!", "See you!", "Bye!"],
-  };
   const b64encode = (s) => btoa(unescape(encodeURIComponent(s)));
   const b64decode = (s) => decodeURIComponent(escape(atob(s.trim())));
   const under1000 = (v) => {
@@ -68,7 +64,7 @@
     factorial: (a) => { const n = a[0]; if (n < 0 || n > 20) return put("Error: enter a number between 0 and 20.");
       let r = 1; for (let i = 2; i <= n; i++) r *= i; put(`${n}! = ${r}`); },
     prime_check: (a) => put(`${a[0]} is ${isPrime(a[0]) ? "PRIME" : "NOT prime"}`),
-    fibonacci_n: (a) => { const n = a[0]; const s = []; let x = 0, y = 1;
+    fibonacci_inline: (a) => { const n = a[0]; const s = []; let x = 0, y = 1;
       for (let i = 0; i < n; i++) { s.push(x); [x, y] = [y, x + y]; } put(s.join(" ") + " "); },
     gcd_two: (a) => put(`GCD(${a[0]}, ${a[1]}) = ${gcd(a[0], a[1])}`),
     lcm_two: (a) => put(`LCM(${a[0]}, ${a[1]}) = ${lcm(a[0], a[1])}`),
@@ -146,7 +142,7 @@
     /* ---------------- converters ---------------- */
     celsius_to_fahrenheit: (a) => put(`${fmt(a[0])} C = ${fmt(a[0] * 9 / 5 + 32)} F`),
     fahrenheit_to_celsius: (a) => put(`${fmt(a[0])} F = ${fmt((a[0] - 32) * 5 / 9)} C`),
-    temperature_converter_plus: (a) => put(`${fmt(a[0])} C = ${fmt(a[0] * 9 / 5 + 32)} F = ${fmt(a[0] + 273.15)} K`),
+    temperature_converter_extended: (a) => put(`${fmt(a[0])} C = ${fmt(a[0] * 9 / 5 + 32)} F = ${fmt(a[0] + 273.15)} K`),
     km_to_miles: (a) => put(`${fmt(a[0])} km = ${(a[0] * 0.621371).toFixed(4)} miles`),
     miles_to_km: (a) => put(`${fmt(a[0])} miles = ${(a[0] / 0.621371).toFixed(4)} km`),
     kg_to_pounds: (a) => put(`${fmt(a[0])} kg = ${(a[0] * 2.20462).toFixed(4)} lb`),
@@ -191,11 +187,8 @@
       put(`Simple interest = ${si.toFixed(2)}`); put(`Total amount = ${(p + si).toFixed(2)}`); },
     compound_interest: (a) => { const [p, r, t, n] = a;
       put(`Compound amount = ${(p * Math.pow(1 + r / (100 * n), n * t)).toFixed(2)}`); },
-    compound_interest_plus: (a) => { const [p, r, t] = a;
+    compound_interest_schedule: (a) => { const [p, r, t] = a;
       for (let y = 1; y <= t; y++) put(`Year ${y}: ${(p * Math.pow(1 + r / 100, y)).toFixed(2)}`); },
-    emi: (a) => { const [p, r, n] = a; const rate = r / 1200;
-      const e = rate ? p * rate * Math.pow(1 + rate, n) / (Math.pow(1 + rate, n) - 1) : p / n;
-      put(`Monthly EMI = ${e.toFixed(2)}`); put(`Total payment = ${(e * n).toFixed(2)}`); },
     loan_emi: (a) => { const [p, r, n] = a; const rate = r / 1200;
       const e = rate ? p * rate * Math.pow(1 + rate, n) / (Math.pow(1 + rate, n) - 1) : p / n;
       put(`EMI = ${e.toFixed(2)}`); put(`Total interest = ${(e * n - p).toFixed(2)}`); },
@@ -221,13 +214,13 @@
       put(`Estimated BMR = ${Math.round(bmr)} kcal/day`); },
 
     /* ---------------- games ---------------- */
-    coin_toss: (a) => { const n = a[0] || 10; const r = []; for (let i = 0; i < n; i++) r.push(Math.random() < .5 ? "Heads" : "Tails");
+    coin_tosses: (a) => { const n = a[0] || 10; const r = []; for (let i = 0; i < n; i++) r.push(Math.random() < .5 ? "Heads" : "Tails");
       put("Results: [" + r.join(", ") + "]");
       put(`Heads: ${r.filter((x) => x === "Heads").length}  Tails: ${r.filter((x) => x === "Tails").length}`); },
-    coin_flip_game: () => put("Result: " + (Math.random() < .5 ? "Heads" : "Tails")),
-    dice_roll: (a) => { const n = a[0] || 2; const r = []; for (let i = 0; i < n; i++) r.push(rnd(1, 6));
+    coin_flip: () => put("Result: " + (Math.random() < .5 ? "Heads" : "Tails")),
+    dice_roll_d6: (a) => { const n = a[0] || 2; const r = []; for (let i = 0; i < n; i++) r.push(rnd(1, 6));
       put("Rolls: [" + r.join(", ") + "]"); put(`Total: ${r.reduce((s, x) => s + x, 0)}`); },
-    dice_roller: (a) => { const [s, c] = a; const r = []; for (let i = 0; i < c; i++) r.push(rnd(1, s));
+    dice_roll_custom: (a) => { const [s, c] = a; const r = []; for (let i = 0; i < c; i++) r.push(rnd(1, s));
       put("Rolls: [" + r.join(", ") + "]"); put(`Total: ${r.reduce((t, x) => t + x, 0)}`); },
     rock_paper_scissors: (a) => { const pick = ["rock", "paper", "scissors"];
       const user = String(a[0] || "").toLowerCase(); const comp = pick[rnd(0, 2)];
@@ -245,7 +238,7 @@
     password_generator: (a) => { const len = a[0] || 12; const count = a[1] || 5;
       const pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+";
       for (let i = 0; i < count; i++) { let s = ""; for (let j = 0; j < len; j++) s += pool[rnd(0, pool.length - 1)]; put(s); } },
-    random_password_plus: (a) => { const len = a[0] || 12;
+    quick_password: (a) => { const len = a[0] || 12;
       const pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
       let s = ""; for (let j = 0; j < len; j++) s += pool[rnd(0, pool.length - 1)];
       put("Password: " + s); },
@@ -280,30 +273,28 @@
       put("Date: " + n.toISOString().slice(0, 10));
       put("Time: " + n.toTimeString().slice(0, 8)); },
     timestamp: () => put("Unix timestamp: " + Math.floor(Date.now() / 1000)),
-    computer: (a) => { const t = String(a[0] || "").toLowerCase();
-      for (const key of Object.keys(CHAT)) if (t.includes(key)) { put("Computer: " + CHAT[key][rnd(0, CHAT[key].length - 1)]); return; }
-      put("Computer: I'm not sure how to respond to that."); },
   };
 
   const SAMPLES = {
     add_two_numbers: "5\n3", area_circle: "5", quadratic_solver: "1\n-5\n6",
     guess_number_game: "50", rock_paper_scissors: "rock", caesar_encrypt: "hello world\n3",
-    caesar_decrypt: "khoor fruzg\n3", emi: "500000\n8\n240", compound_interest: "1000\n10\n2\n4",
-    compound_interest_plus: "1000\n10\n3", simple_interest: "1000\n5\n2", loan_emi: "500000\n8\n240",
+    caesar_decrypt: "khoor fruzg\n3", compound_interest: "1000\n10\n2\n4",
+    compound_interest_schedule: "1000\n10\n3", simple_interest: "1000\n5\n2", loan_emi: "500000\n8\n240",
     discount: "1000\n20", profit_loss: "100\n120", tax: "1000\n10", base64_encode: "hello world",
     base64_decode: "aGVsbG8gd29ybGQ=", number_to_words: "999", palindrome_check: "level",
     reverse_string: "hello", sort_words: "banana apple cherry", remove_duplicates: "a b a c b",
     count_vowels: "education", title_case: "hello world", seconds_test: "", minutes_to_seconds: "5",
     hours_to_minutes: "2", day_of_week: "2024\n1\n1", strong_number: "145", password_generator: "12\n3",
-    computer: "hello", mad_libs: "dog\nrun\nfast", calorie_estimate: "70\n175\n30\nm",
+    mad_libs: "dog\nrun\nfast", calorie_estimate: "70\n175\n30\nm",
     tip_calculator: "1000\n15\n2", age_calculator: "2005\n6\n15", days_between: "2024-01-01\n2024-12-31",
     binary_to_decimal: "1010", hex_to_decimal: "ff", decimal_to_hex: "255", number_to_words: "123",
-    countdown_timer: "10", dice_roller: "6\n2", coin_toss: "5", timer: "10",
+    countdown_timer: "10", dice_roll_custom: "6\n2", coin_tosses: "5", timer: "10",
     minecraft: "", list_directory: ".", ascii_art: "", current_time: "", system_info: "",
-    timestamp: "", random_number: "1\n100", random_string: "8", random_password_plus: "12",
+    timestamp: "", random_number: "1\n100", random_string: "8", quick_password: "12",
     password_generator: "12\n3", stopwatch: "10", quote_generator: "3",
     heart_rate_zones: "30", water_intake: "70", bmi_calculator: "70\n1.75",
     muscle: "", random: "", matrix: "", stack: "", linked_list: "", queue: "", tree: "",
+    absolute: "-5", area_rectangle: "4\n3", area_triangle: "6\n4", armstrong: "153", automorphic: "25", average: "2\n4\n6\n8", ceil: "3.1", celsius_to_fahrenheit: "100", char_count: "hello", cos_deg: "60", decimal_to_binary: "10", diamond: "4", dice_roll_d6: "3", digit_sum: "123", distance_formula: "0\n0\n3\n4", divide_two_numbers: "10\n2", divisors: "12", even_odd: "4", exp: "1", factor_pairs: "12", factorial: "5", factorial_table: "6", fahrenheit_to_celsius: "212", feet_to_meters: "328", fibonacci_inline: "8", floor: "3.9", gcd_two: "12\n8", gcd_range: "12\n4", harshad: "18", kg_to_pounds: "70", km_to_miles: "10", lcm_two: "4\n6", lcm_range: "4\n3", leap_year: "2024", log10: "1000", lowercase: "HELLO WORLD", maximum: "5\n2\n9", meters_to_feet: "100", miles_to_km: "6.21", minimum: "5\n2\n9", multiples: "3\n5", multiplication_table: "5", multiply_two_numbers: "4\n3", natural_log: "2.718281828", neon: "9", pascal_triangle: "5", percentage: "20\n80", perfect_number: "28", perimeter_circle: "5", pounds_to_kg: "154", power: "2\n10", prime_check: "7", prime_list: "20", pyramid: "4", remove_spaces: "a b c", round_num: "3.6", sin_deg: "30", spy_number: "123", square_root: "81", subtract_two_numbers: "5\n2", sum_cubes: "10", sum_natural: "10", sum_squares: "10", tan_deg: "45", tech_number: "3025", temperature_converter_extended: "0", uppercase: "hello world", volume_cube: "3", volume_sphere: "3", word_count: "the quick brown fox", uuid_generator: "",
   };
 
   window.MP = {
@@ -315,7 +306,15 @@
       if (!fn) return ["This program is available in the Python version only."];
       OUT.length = 0;
       const raw = lines(input || "");
-      if (!raw.length) return ["Please enter at least one value."];
+      if (!raw.length) {
+        // A few demos take no input at all - run them with an empty list
+        // instead of asking the user for a value.
+        if (NOINPUT.indexOf(slug) !== -1) {
+          try { fn([]); } catch (e) { OUT.push("Error: " + e.message); }
+          return OUT.length ? OUT : ["(no output)"];
+        }
+        return ["Please enter at least one value."];
+      }
       const text = raw.filter((x) => isNaN(Number(x)));
       const numbers = raw.map(Number);
       const mixed = MIXED.indexOf(slug) !== -1;
