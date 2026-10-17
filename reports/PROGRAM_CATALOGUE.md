@@ -1,8 +1,8 @@
 # Program Catalogue
 
 Total Python programs: 297
-Total files (excl. venv/site-packages): 401
-Total folders (excl. venv/site-packages): 53
+Total files (excl. venv/site-packages): 396
+Total folders (excl. venv/site-packages): 51
 
 | No. | Program Name | File Path | Status | Test Result |
 |---|---|---|---|---|
@@ -297,9 +297,9 @@ Total folders (excl. venv/site-packages): 53
 | 289 | voice_assistant | projects\charvis_ai\voice_assistant.py | Original | Pass |
 | 290 | voice_control | projects\charvis_ai\voice_control.py | Original | Pass |
 | 291 | app | projects\paypal_clone\app.py | Original | Pass |
-| 292 | multi_program_all_in_one | reports\multi_program_all_in_one.py | Original | Pass |
-| 293 | setup | setup.py | Original | Pass |
-| 294 | smoke_test | smoke_test.py | New/Fixed | Pass |
-| 295 | build_programs | tools\build_programs.py | Original | Pass |
-| 296 | build_site | tools\build_site.py | Original | Pass |
+| 292 | setup | setup.py | Original | Pass |
+| 293 | smoke_test | smoke_test.py | New/Fixed | Pass |
+| 294 | build_programs | tools\build_programs.py | Original | Pass |
+| 295 | build_site | tools\build_site.py | Original | Pass |
+| 296 | fix_demos | tools\fix_demos.py | Original | Pass |
 | 297 | app | webapp\app.py | Original | Pass |

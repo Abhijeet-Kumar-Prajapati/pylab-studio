@@ -4,8 +4,8 @@
 - Original programs: 161
 - New programs: 136
 - Compile failures: 0
-- Total files (excl. venv): 401
-- Total folders (excl. venv): 53
+- Total files (excl. venv): 396
+- Total folders (excl. venv): 51
 
 ## Removed / Renamed
 - `.pytest_cache` removed (junk).

@@ -1,5 +1,5 @@
 @echo off
-title Multi Program - All in One Setup & Run
+title PyLab Studio - Setup & Run
 cd /d "%~dp0"
 
 echo Checking Python...
@@ -13,7 +13,7 @@ if errorlevel 1 (
 REM Make sure this project's own modules are importable, not a stale venv.
 set PYTHONPATH=%~dp0;%PYTHONPATH%
 
-echo Starting Multi Program - All in One...
+echo Starting PyLab Studio...
 py "%~dp0main.py"
 
 echo.

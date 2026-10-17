@@ -10,13 +10,13 @@
 
   /* theme */
   const body = document.body;
-  const saved = localStorage.getItem("mp-theme");
+  const saved = localStorage.getItem("pylab-theme");
   if (saved) body.setAttribute("data-theme", saved);
   const tb = $("#themeBtn");
   if (tb) tb.addEventListener("click", () => {
     const next = body.getAttribute("data-theme") === "dark" ? "light" : "dark";
     body.setAttribute("data-theme", next);
-    localStorage.setItem("mp-theme", next);
+    localStorage.setItem("pylab-theme", next);
   });
 
   /* home counters + quick grid */
@@ -121,7 +121,7 @@
       const slug = picker.value;
       const prog = P.find((p) => p.slug === slug);
       pdesc.textContent = prog ? prog.desc : "";
-      if (prog) input.placeholder = window.MP.sample(slug) || "Enter your values, one per line";
+      if (prog) input.placeholder = window.PyLab.sample(slug) || "Enter your values, one per line";
     }
 
     rq.addEventListener("input", fill);
@@ -130,11 +130,11 @@
     $("#runBtn").addEventListener("click", () => {
       const slug = picker.value;
       if (!slug) return;
-      const lines = window.MP.run(slug, input.value);
+      const lines = window.PyLab.run(slug, input.value);
       out.textContent = lines.join("\n");
     });
     $("#sampleBtn").addEventListener("click", () => {
-      input.value = window.MP.sample(picker.value);
+      input.value = window.PyLab.sample(picker.value);
     });
     $("#copyBtn").addEventListener("click", () => {
       navigator.clipboard.writeText(out.textContent).then(() => {
@@ -144,6 +144,6 @@
 
     fill();
     const want = new URLSearchParams(location.search).get("p");
-    if (want && window.MP.has(want)) { picker.value = want; update(); }
+    if (want && window.PyLab.has(want)) { picker.value = want; update(); }
   }
 })();

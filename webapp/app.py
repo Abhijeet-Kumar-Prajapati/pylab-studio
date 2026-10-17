@@ -1,5 +1,5 @@
 """
-Multi Program - Website
+PyLab Studio - Website
 =======================
 
 A local web application that lists every program in the project and runs it

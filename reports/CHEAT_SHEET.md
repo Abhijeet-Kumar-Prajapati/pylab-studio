@@ -1,4 +1,4 @@
-# Multi Program - All in One: Cheat Sheet
+# PyLab Studio: Cheat Sheet
 
 ## Run
 - `SETUP_AND_RUN.bat` (recommended)

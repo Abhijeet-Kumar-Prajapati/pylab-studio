@@ -1,5 +1,5 @@
 """
-Multi Program - All in One
+PyLab Studio
 ==========================
 
 A single, self-contained, menu-driven console application that bundles
@@ -779,7 +779,7 @@ def main_menu():
     while True:
         clear_screen()
         print("=" * 60)
-        print("        MULTI PROGRAM - ALL IN ONE")
+        print("            P Y L A B   S T U D I O")
         print("=" * 60)
         start = page * page_size
         end = min(start + page_size, total)

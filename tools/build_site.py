@@ -188,7 +188,7 @@ HEAD = """<!DOCTYPE html>
 </head>
 <body data-theme="dark">
 <header class="topbar"><div class="wrap bar">
-  <a class="brand" href="index.html"><span class="logo">MP</span><span>Multi<strong>Program</strong></span></a>
+  <a class="brand" href="index.html"><span class="logo">Py</span><span>PyLab<strong>Studio</strong></span></a>
   <nav>
     <a href="index.html">Home</a>
     <a href="programs.html">Programs</a>
@@ -203,7 +203,7 @@ HEAD = """<!DOCTYPE html>
 </div></header>
 <main>{body}</main>
 <footer class="footer"><div class="wrap foot">
-  <div><p><strong>Multi Program - All in One</strong></p>
+  <div><p><strong>PyLab Studio</strong></p>
   <p class="dim">Runs in your browser. No server, no installation.</p></div>
   <div class="dim">
     <a href="{REPO_URL}">GitHub</a> &middot;
@@ -257,7 +257,7 @@ INDEX_HTML = page("PyLab Studio", body="""
 </section>
 """)
 
-PROGRAMS_HTML = page(title="Programs - Multi Program", body="""
+PROGRAMS_HTML = page(title="Programs - PyLab Studio", body="""
 <section class="wrap">
   <h1 class="sec">All programs</h1>
   <form class="filters" id="filters">
@@ -272,7 +272,7 @@ PROGRAMS_HTML = page(title="Programs - Multi Program", body="""
 </section>
 """)
 
-CATEGORIES_HTML = page(title="Categories - Multi Program", body="""
+CATEGORIES_HTML = page(title="Categories - PyLab Studio", body="""
 <section class="wrap">
   <h1 class="sec">Categories</h1>
   <p class="lead" id="intro"></p>
@@ -280,7 +280,7 @@ CATEGORIES_HTML = page(title="Categories - Multi Program", body="""
 </section>
 """)
 
-SETUP_HTML = page(title="Setup - Multi Program", body="""
+SETUP_HTML = page(title="Setup - PyLab Studio", body="""
 <section class="wrap">
   <h1 class="sec">Setup</h1>
   <p class="lead">This website needs nothing. The full Python project needs Python 3.8+.</p>
@@ -321,7 +321,7 @@ py webapp\\app.py --selftest     # Total: 133  Passed: 133  Failed: 0</pre>
   <div class="panel">
     <h3>Download</h3>
     <p class="lead">Poora project ek zip me le jao aur offline use karo.</p>
-    <a class="btn big" id="dlAll" href="{DOWNLOAD_URL}" download>&#11015; multi-program-code.zip</a>
+    <a class="btn big" id="dlAll" href="{DOWNLOAD_URL}" download>&#11015; Download project (.zip)</a>
     <p class="dim">Zip me 133 programs + website + launchers sab shamil hai (koi venv nahi).</p>
     <p class="dim">GitHub se bhi: <a target="_blank" rel="noopener"
       href="{DOWNLOAD_URL}">archive/refs/heads/main.zip</a></p>
@@ -345,7 +345,7 @@ py webapp\\app.py --selftest     # Total: 133  Passed: 133  Failed: 0</pre>
 </section>
 """)
 
-API_HTML = page(title="REST API - Multi Program", body="""
+API_HTML = page(title="REST API - PyLab Studio", body="""
 <section class="wrap">
   <h1 class="sec">REST API</h1>
   <p class="lead">Available when you run the project locally: <code>http://127.0.0.1:5001</code></p>
@@ -381,7 +381,7 @@ API_HTML = page(title="REST API - Multi Program", body="""
 </section>
 """)
 
-ABOUT_HTML = page(title="About - Multi Program", body="""
+ABOUT_HTML = page(title="About - PyLab Studio", body="""
 <section class="wrap">
   <h1 class="sec">About</h1>
   <p class="lead">A personal Python project collected into one runnable place.</p>
@@ -412,7 +412,7 @@ ABOUT_HTML = page(title="About - Multi Program", body="""
 </section>
 """)
 
-RUN_HTML = page(title="Runner - Multi Program", body=""")
+RUN_HTML = page(title="Runner - PyLab Studio", body=""")
 <section class="wrap">
   <h1 class="sec">Program runner</h1>
   <p class="lead">Pick a program, enter your values, get the result. Runs entirely in this browser.</p>

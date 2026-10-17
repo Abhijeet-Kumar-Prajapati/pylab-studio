@@ -1,4 +1,4 @@
-/* Multi Program - browser demos (JavaScript ports of the Python programs) */
+/* PyLab Studio - browser demos (JavaScript ports of the Python programs) */
 (function () {
   "use strict";
 
@@ -297,7 +297,7 @@
     absolute: "-5", area_rectangle: "4\n3", area_triangle: "6\n4", armstrong: "153", automorphic: "25", average: "2\n4\n6\n8", ceil: "3.1", celsius_to_fahrenheit: "100", char_count: "hello", cos_deg: "60", decimal_to_binary: "10", diamond: "4", dice_roll_d6: "3", digit_sum: "123", distance_formula: "0\n0\n3\n4", divide_two_numbers: "10\n2", divisors: "12", even_odd: "4", exp: "1", factor_pairs: "12", factorial: "5", factorial_table: "6", fahrenheit_to_celsius: "212", feet_to_meters: "328", fibonacci_inline: "8", floor: "3.9", gcd_two: "12\n8", gcd_range: "12\n4", harshad: "18", kg_to_pounds: "70", km_to_miles: "10", lcm_two: "4\n6", lcm_range: "4\n3", leap_year: "2024", log10: "1000", lowercase: "HELLO WORLD", maximum: "5\n2\n9", meters_to_feet: "100", miles_to_km: "6.21", minimum: "5\n2\n9", multiples: "3\n5", multiplication_table: "5", multiply_two_numbers: "4\n3", natural_log: "2.718281828", neon: "9", pascal_triangle: "5", percentage: "20\n80", perfect_number: "28", perimeter_circle: "5", pounds_to_kg: "154", power: "2\n10", prime_check: "7", prime_list: "20", pyramid: "4", remove_spaces: "a b c", round_num: "3.6", sin_deg: "30", spy_number: "123", square_root: "81", subtract_two_numbers: "5\n2", sum_cubes: "10", sum_natural: "10", sum_squares: "10", tan_deg: "45", tech_number: "3025", temperature_converter_extended: "0", uppercase: "hello world", volume_cube: "3", volume_sphere: "3", word_count: "the quick brown fox", uuid_generator: "",
   };
 
-  window.MP = {
+  window.PyLab = {
     has: (slug) => Object.prototype.hasOwnProperty.call(D, slug),
     sample: (slug) => SAMPLES[slug] || "",
     list: () => Object.keys(D),
