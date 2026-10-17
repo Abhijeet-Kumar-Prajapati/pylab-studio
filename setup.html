@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Setup - PyLab Studio</title>
+<meta name="description" content="133 Python programs - maths, converters, strings, games, finance and health. Run them in the browser, no installation needed.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-theme="dark">
+<header class="topbar"><div class="wrap bar">
+  <a class="brand" href="index.html"><span class="logo">Py</span><span>PyLab<strong>Studio</strong></span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="programs.html">Programs</a>
+    <a href="run.html">Runner</a>
+    <a href="categories.html">Categories</a>
+    <a href="setup.html">Setup</a>
+    <a href="api.html">API</a>
+    <a href="about.html">About</a>
+    <a class="dl" href="https://github.com/Abhijeet-Kumar-Prajapati/pylab-studio/archive/refs/heads/main.zip" download>Download</a>
+  </nav>
+  <button class="theme" id="themeBtn" title="Toggle theme">&#9681;</button>
+</div></header>
+<main>
+<section class="wrap">
+  <h1 class="sec">Setup</h1>
+  <p class="lead">This website needs nothing. The full Python project needs Python 3.8+.</p>
+
+  <div class="panel">
+    <h3>1. Clone the project</h3>
+    <pre class="console">git clone https://github.com/Abhijeet-Kumar-Prajapati/pylab-studio.git
+cd pylab-studio</pre>
+  </div>
+
+  <div class="panel">
+    <h3>2. Run the console menu</h3>
+    <p>Zero dependencies &mdash; only the Python standard library.</p>
+    <pre class="console">run.bat            # Windows
+py main.py         # any platform</pre>
+  </div>
+
+  <div class="panel">
+    <h3>3. Run the local website (all 133 programs)</h3>
+    <pre class="console">py -m pip install flask
+run_website.bat
+# -> http://127.0.0.1:5001</pre>
+    <p class="dim">The local site can execute the real Python programs. This public site
+      runs JavaScript ports of the same algorithms.</p>
+  </div>
+
+  <div class="panel">
+    <h3>4. Optional extras</h3>
+    <pre class="console">py -m pip install -r requirements-all.txt</pre>
+  </div>
+
+  <div class="panel">
+    <h3>5. Verify</h3>
+    <pre class="console">test.bat
+py webapp\app.py --selftest     # Total: 133  Passed: 133  Failed: 0</pre>
+  </div>
+
+  <div class="panel">
+    <h3>Download</h3>
+    <p class="lead">Poora project ek zip me le jao aur offline use karo.</p>
+    <a class="btn big" id="dlAll" href="https://github.com/Abhijeet-Kumar-Prajapati/pylab-studio/archive/refs/heads/main.zip" download>&#11015; Download project (.zip)</a>
+    <p class="dim">Zip me 133 programs + website + launchers sab shamil hai (koi venv nahi).</p>
+    <p class="dim">GitHub se bhi: <a target="_blank" rel="noopener"
+      href="https://github.com/Abhijeet-Kumar-Prajapati/pylab-studio/archive/refs/heads/main.zip">archive/refs/heads/main.zip</a></p>
+    <p class="dim">Ek single program bhi &mdash; catalogue page par har card me
+      &ldquo;Download .py&rdquo; link hai.</p>
+  </div>
+
+  <div class="panel">
+    <h3>Launchers</h3>
+    <table class="tbl">
+      <tr><th>File</th><th>Purpose</th></tr>
+      <tr><td>run.bat</td><td>Console menu</td></tr>
+      <tr><td>run_website.bat</td><td>Local website + browser</td></tr>
+      <tr><td>run_web_app.bat</td><td>PayPal demo (port 5000)</td></tr>
+      <tr><td>setup.bat</td><td>Check Python and pip</td></tr>
+      <tr><td>test.bat</td><td>Compile + smoke test</td></tr>
+      <tr><td>build.bat</td><td>Rebuild reports</td></tr>
+      <tr><td>list-programs.bat</td><td>Print the catalogue</td></tr>
+    </table>
+  </div>
+</section>
+</main>
+<footer class="footer"><div class="wrap foot">
+  <div><p><strong>PyLab Studio</strong></p>
+  <p class="dim">Runs in your browser. No server, no installation.</p></div>
+  <div class="dim">
+    <a href="https://github.com/Abhijeet-Kumar-Prajapati/pylab-studio">GitHub</a> &middot;
+    <a href="https://github.com/Abhijeet-Kumar-Prajapati/pylab-studio/blob/main/README.md">README</a>
+  </div>
+</div></footer>
+<script src="assets/data.js"></script>
+<script src="assets/demos.js"></script>
+<script src="assets/site.js"></script>
+</body></html>

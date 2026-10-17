@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About - PyLab Studio</title>
+<meta name="description" content="133 Python programs - maths, converters, strings, games, finance and health. Run them in the browser, no installation needed.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-theme="dark">
+<header class="topbar"><div class="wrap bar">
+  <a class="brand" href="index.html"><span class="logo">Py</span><span>PyLab<strong>Studio</strong></span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="programs.html">Programs</a>
+    <a href="run.html">Runner</a>
+    <a href="categories.html">Categories</a>
+    <a href="setup.html">Setup</a>
+    <a href="api.html">API</a>
+    <a href="about.html">About</a>
+    <a class="dl" href="https://github.com/Abhijeet-Kumar-Prajapati/pylab-studio/archive/refs/heads/main.zip" download>Download</a>
+  </nav>
+  <button class="theme" id="themeBtn" title="Toggle theme">&#9681;</button>
+</div></header>
+<main>
+<section class="wrap">
+  <h1 class="sec">About</h1>
+  <p class="lead">A personal Python project collected into one runnable place.</p>
+
+  <div class="panel"><h3>What this is</h3>
+    <p>133 small Python programs plus two front ends: a console menu and a local Flask website
+       that can execute any program. This public page is the static mirror, with JavaScript
+       ports so the demos work without any installation.</p></div>
+
+  <div class="panel"><h3>Layout</h3>
+    <table class="tbl">
+      <tr><th>Path</th><th>Contents</th></tr>
+      <tr><td><code>main.py</code></td><td>All-in-one console menu</td></tr>
+      <tr><td><code>webapp/</code></td><td>Flask website that runs Python programs</td></tr>
+      <tr><td><code>programs/general/</code></td><td>130 standalone programs</td></tr>
+      <tr><td><code>programs/utilities/</code></td><td>Notes, contacts, timers, generators</td></tr>
+      <tr><td><code>projects/</code></td><td>PayPal demo, Charvis voice assistant</td></tr>
+      <tr><td><code>learning/</code>, <code>web/</code>, <code>android/</code></td><td>Earlier projects</td></tr>
+    </table></div>
+
+  <div class="panel"><h3>Design choices</h3>
+    <ul class="steps">
+      <li>Console programs use only the Python standard library</li>
+      <li>Every program has a docstring, validation and a clean exit</li>
+      <li>The local site runs each program in a fresh process with a timeout</li>
+      <li>This public site runs entirely in the browser</li>
+    </ul></div>
+</section>
+</main>
+<footer class="footer"><div class="wrap foot">
+  <div><p><strong>PyLab Studio</strong></p>
+  <p class="dim">Runs in your browser. No server, no installation.</p></div>
+  <div class="dim">
+    <a href="https://github.com/Abhijeet-Kumar-Prajapati/pylab-studio">GitHub</a> &middot;
+    <a href="https://github.com/Abhijeet-Kumar-Prajapati/pylab-studio/blob/main/README.md">README</a>
+  </div>
+</div></footer>
+<script src="assets/data.js"></script>
+<script src="assets/demos.js"></script>
+<script src="assets/site.js"></script>
+</body></html>

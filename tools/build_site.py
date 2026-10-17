@@ -15,10 +15,16 @@ import sys
 import zipfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# GitHub Pages serves a project site (https://<user>.github.io/<repo>/) from
-# this folder, so the generated static site has to live in docs/.
+# GitHub Pages serves a project site (https://<user>.github.io/<repo>/) from a
+# folder inside the repository. The pages are written to BOTH docs/ and the
+# repository root so the site works whichever of the two the Pages "Source"
+# setting is pointed at, without anyone having to change the setting first.
 SITE = os.path.join(ROOT, "docs")
+MIRROR = ROOT
 ASSETS = os.path.join(SITE, "assets")
+PAGES = ("index.html", "programs.html", "categories.html", "run.html",
+         "setup.html", "api.html", "about.html")
+ASSET_FILES = ("data.js", "demos.js", "site.js", "style.css")
 sys.path.insert(0, os.path.join(ROOT, "webapp"))
 
 from app import discover_programs, catalogue_stats  # noqa: E402
@@ -163,8 +169,28 @@ def main():
         ("about.html", ABOUT_HTML),
         ("run.html", RUN_HTML),
     ):
+        text = render(template)
         with open(os.path.join(SITE, filename), "w", encoding="utf-8") as f:
-            f.write(render(template))
+            f.write(text)
+        # keep the repository-root mirror in step with docs/
+        if MIRROR != SITE:
+            with open(os.path.join(MIRROR, filename), "w", encoding="utf-8") as f:
+                f.write(text)
+
+    if MIRROR != SITE:
+        os.makedirs(os.path.join(MIRROR, "assets"), exist_ok=True)
+        for name in ASSET_FILES:
+            src = os.path.join(ASSETS, name)
+            if os.path.exists(src):
+                with open(src, "rb") as f:
+                    blob = f.read()
+                with open(os.path.join(MIRROR, "assets", name), "wb") as f:
+                    f.write(blob)
+        # .nojekyll stops Jekyll from rewriting the published pages
+        for folder in (SITE, MIRROR):
+            marker = os.path.join(folder, ".nojekyll")
+            if not os.path.exists(marker):
+                open(marker, "w").close()
 
     # assets/style.css, site.js and demos.js are hand-written and kept as real files.
     build_zip()
