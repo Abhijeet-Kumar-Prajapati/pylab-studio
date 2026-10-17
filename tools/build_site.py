@@ -2,7 +2,7 @@
 Generate the static site for GitHub Pages.
 
 GitHub Pages cannot run Python, so this builds:
-  * a catalogue of all 133 programs (real data read from the source files)
+  * a catalogue of all 132 programs (real data read from the source files)
   * a browser runner for a large subset, implemented in JavaScript
   * static pages: home, programs, categories, setup, api docs, about
 
@@ -209,7 +209,7 @@ HEAD = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
-<meta name="description" content="133 Python programs - maths, converters, strings, games, finance and health. Run them in the browser, no installation needed.">
+<meta name="description" content="132 Python programs - maths, converters, strings, games, finance and health. Run them in the browser, no installation needed.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body data-theme="dark">
@@ -244,7 +244,7 @@ HEAD = """<!DOCTYPE html>
 
 INDEX_HTML = page("PyLab Studio", body="""
 <section class="hero"><div class="wrap">
-  <span class="pill">133 Python programs &middot; runs in your browser</span>
+  <span class="pill">132 Python programs &middot; runs in your browser</span>
   <h1>Every program,<br>right in the browser.</h1>
   <p class="lead">Maths, converters, string tools, games, finance and health.
      No install, no server, no internet needed.</p>
@@ -257,8 +257,8 @@ INDEX_HTML = page("PyLab Studio", body="""
 
 <section class="wrap">
   <div class="stats">
-    <div class="stat"><b id="sTotal">133</b><span>programs</span></div>
-    <div class="stat"><b id="sCats">11</b><span>categories</span></div>
+    <div class="stat"><b id="sTotal">132</b><span>programs</span></div>
+    <div class="stat"><b id="sCats">9</b><span>categories</span></div>
     <div class="stat"><b id="sWeb">0</b><span>runnable here</span></div>
     <div class="stat"><b>0</b><span>setup cost</span></div>
   </div>
@@ -277,7 +277,7 @@ INDEX_HTML = page("PyLab Studio", body="""
     <article class="card"><h3>&#128269; Instant</h3>
       <p>Open the runner, type your values, get the answer. No compile step, no waiting.</p></article>
     <article class="card"><h3>&#128203; Full Python too</h3>
-      <p>This site mirrors the Python project. Clone it and run all 133 programs locally.</p></article>
+      <p>This site mirrors the Python project. Clone it and run all 132 programs locally.</p></article>
   </div>
   <p class="center"><a class="btn ghost" href="{REPO_URL}">View on GitHub &rarr;</a></p>
 </section>
@@ -325,7 +325,7 @@ py main.py         # any platform</pre>
   </div>
 
   <div class="panel">
-    <h3>3. Run the local website (all 133 programs)</h3>
+    <h3>3. Run the local website (all 132 programs)</h3>
     <pre class="console">py -m pip install flask
 run_website.bat
 # -> http://127.0.0.1:5001</pre>
@@ -341,14 +341,14 @@ run_website.bat
   <div class="panel">
     <h3>5. Verify</h3>
     <pre class="console">test.bat
-py webapp\\app.py --selftest     # Total: 133  Passed: 133  Failed: 0</pre>
+py webapp\\app.py --selftest     # Total: 132  Passed: 132  Failed: 0</pre>
   </div>
 
   <div class="panel">
     <h3>Download</h3>
     <p class="lead">Poora project ek zip me le jao aur offline use karo.</p>
     <a class="btn big" id="dlAll" href="{DOWNLOAD_URL}" download>&#11015; Download project (.zip)</a>
-    <p class="dim">Zip me 133 programs + website + launchers sab shamil hai (koi venv nahi).</p>
+    <p class="dim">Zip me 132 programs + website + launchers sab shamil hai (koi venv nahi).</p>
     <p class="dim">GitHub se bhi: <a target="_blank" rel="noopener"
       href="{DOWNLOAD_URL}">archive/refs/heads/main.zip</a></p>
     <p class="dim">Ek single program bhi &mdash; catalogue page par har card me
@@ -395,7 +395,7 @@ API_HTML = page(title="REST API - PyLab Studio", body="""
 
   <div class="panel"><h3>GET /health &nbsp;&middot;&nbsp; /api/stats &nbsp;&middot;&nbsp; /download</h3>
     <pre class="console">curl http://127.0.0.1:5001/health
-{"status":"ok","programs":133,"uptime":"0:04:12"}</pre></div>
+{"status":"ok","programs":132,"uptime":"0:04:12"}</pre></div>
 
   <div class="panel"><h3>Limits</h3>
     <ul class="steps">
@@ -413,7 +413,7 @@ ABOUT_HTML = page(title="About - PyLab Studio", body="""
   <p class="lead">A personal Python project collected into one runnable place.</p>
 
   <div class="panel"><h3>What this is</h3>
-    <p>133 small Python programs plus two front ends: a console menu and a local Flask website
+    <p>132 small Python programs plus two front ends: a console menu and a local Flask website
        that can execute any program. This public page is the static mirror, with JavaScript
        ports so the demos work without any installation.</p></div>
 
