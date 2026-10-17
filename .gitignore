@@ -1,0 +1,39 @@
+# ---------------------------------------------------------------------------
+# PyLab Studio - ignore rules
+# ---------------------------------------------------------------------------
+
+# virtual environments
+archive/
+.venv/
+venv/
+env/
+
+# generated output
+webapp/build/
+reports/TEST_REPORT.md
+*.zip
+
+# personal / generated data - never publish these
+reports/phone_numbers.xlsx
+reports/test_numbers.csv
+projects/**/instance/
+*.db
+*.sqlite
+*.sqlite3
+.env
+.env.*
+*.pem
+*.key
+
+# python cache
+__pycache__/
+*.py[cod]
+*.pyc
+.pytest_cache/
+.mypy_cache/
+
+# editors / os
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

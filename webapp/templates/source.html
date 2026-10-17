@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Source - {{ program.name }} - PyLab Studio{% endblock %}
+
+{% block content %}
+<section class="wrap run">
+  <a class="back" href="{{ url_for('run', program_id=program.id) }}">&larr; Back to {{ program.name }}</a>
+
+  <div class="runhead">
+    <h1>{{ program.name }}</h1>
+    <span class="badge">{{ program.category }}</span>
+    <span class="badge alt">{{ program.size_kb }} KB</span>
+  </div>
+  <code class="path">{{ program.path }}</code>
+
+  <div class="btnrow mt">
+    <button class="btn sm" data-copy="srcBox">Copy source</button>
+    <a class="btn ghost sm" href="{{ url_for('download_program', program_id=program.id) }}">Download .py</a>
+    <a class="btn ghost sm" href="{{ url_for('run', program_id=program.id) }}">Run it</a>
+  </div>
+
+  <pre class="console big" id="srcBox">{{ code }}</pre>
+</section>
+{% endblock %}

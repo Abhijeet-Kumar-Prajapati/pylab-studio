@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ site or 'PyLab Studio' }}{% endblock %}</title>
+  <meta name="description" content="PyLab Studio - run {{ stats.total if stats else 130 }}+ Python programs from one website. Search, favourite and execute every program in your browser.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%234f8cff'/><text x='16' y='22' font-size='15' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>Py</text></svg>">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body data-theme="dark">
+
+<header class="topbar">
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <span class="logo">Py</span>
+      <span>PyLab<strong>Studio</strong></span>
+    </a>
+
+    <input id="quickSearch" class="navsearch" type="search" autocomplete="off"
+           placeholder="Search programs..." aria-label="Search programs">
+
+    <nav>
+      <a href="/" class="{{ 'on' if request.endpoint == 'index' }}">Home</a>
+      <a href="/programs" class="{{ 'on' if request.endpoint in ('programs', 'run', 'source') }}">Programs</a>
+      <a href="/categories" class="{{ 'on' if request.endpoint == 'categories' }}">Categories</a>
+      <a href="/setup" class="{{ 'on' if request.endpoint == 'setup' }}">Setup</a>
+      <a href="/api-docs" class="{{ 'on' if request.endpoint == 'api_docs' }}">API</a>
+      <a href="/status" class="{{ 'on' if request.endpoint == 'status' }}">Status</a>
+      <a href="/about" class="{{ 'on' if request.endpoint == 'about' }}">About</a>
+    </nav>
+
+    <button class="theme" id="themeBtn" title="Toggle light / dark">&#9681;</button>
+  </div>
+</header>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <div class="wrap foot">
+    <div>
+      <p><strong>PyLab Studio</strong></p>
+      <p class="dim">Every program runs in its own process with a 12 second timeout.</p>
+    </div>
+    <div class="dim">
+      <a href="/health">health</a> &middot;
+      <a href="/api/programs">api</a> &middot;
+      <a href="/export.csv">csv</a> &middot;
+      <a href="/download">download</a>
+    </div>
+  </div>
+</footer>
+
+<div class="helpbox" id="shortcutHelp">
+  <h3>Keyboard shortcuts</h3>
+  <table class="tbl">
+    <tr><td><kbd>/</kbd></td><td>focus search</td></tr>
+    <tr><td><kbd>p</kbd></td><td>all programs</td></tr>
+    <tr><td><kbd>h</kbd></td><td>home</td></tr>
+    <tr><td><kbd>c</kbd></td><td>focus the input box</td></tr>
+    <tr><td><kbd>r</kbd></td><td>run the program</td></tr>
+    <tr><td><kbd>?</kbd></td><td>show / hide this help</td></tr>
+    <tr><td><kbd>Esc</kbd></td><td>close</td></tr>
+  </table>
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

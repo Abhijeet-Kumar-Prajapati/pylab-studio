@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Logo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #121212;
+        }
+        .logo {
+            font-size: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            color: #00f;
+            text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            position: fixed;
+            left: 20px;
+            top: 100px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 3px;
+            border-radius: 3px;
+            display: none;
+        }
+
+        .option {
+            padding: 3px 6px;
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            background-color: #ff4500;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .option:hover {
+            transform: scale(1.1);
+            background-color: #ff6347;
+        }
+
+        .quick-ball {
+            position: fixed;
+            left: 20px;
+            top: 50px;
+            width: 30px;
+            height: 30px;
+            background-color: #ff4500;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            font-size: 10px;
+        }
+
+        .quick-ball:hover {
+            transform: scale(1.2);
+            background-color: #ff6347;
+        }
+
+        @keyframes bigBang {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(3); opacity: 0.5; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        .logo {
+            animation: glow 1.5s infinite alternate;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo" id="logo">Blue Ray Logo</div>
+    <div class="options" id="options">
+        <button class="option" onclick="applyAnimation('bigBang')">Big Bang</button>
+        <button class="option" onclick="applyAnimation('glow')">Glow</button>
+        <button class="option" onclick="applyAnimation('rotate')">Rotate</button>
+        <button class="option" onclick="applyAnimation('colorChange')">Color Change</button>
+        <button class="option" onclick="applyAnimation('bounce')">Bounce</button>
+        <button class="option" onclick="applyAnimation('pulse')">Pulse</button>
+        <button class="option" onclick="applyAnimation('shake')">Shake</button>
+        <button class="option" onclick="applyAnimation('flip')">Flip</button>
+        <button class="option" onclick="applyAnimation('zoom')">Zoom</button>
+        <button class="option" onclick="applyAnimation('looneyTunes')">Looney Tunes</button>
+        <button class="option" onclick="applyAnimation('tomAndJerry')">Tom and Jerry</button>
+        <button class="option" onclick="applyAnimation('scoobyDoo')">Scooby-Doo</button>
+        <button class="option" onclick="applyAnimation('lionKing')">The Lion King</button>
+        <button class="option" onclick="applyAnimation('frozen')">Frozen</button>
+        <button class="option" onclick="applyAnimation('aladdin')">Aladdin</button>
+        <button class="option" onclick="applyAnimation('naruto')">Naruto</button>
+        <button class="option" onclick="applyAnimation('attackOnTitan')">Attack on Titan</button>
+        <button class="option" onclick="applyAnimation('dragonBallZ')">Dragon Ball Z</button>
+        <button class="option" onclick="applyAnimation('avatar')">Avatar: The Last Airbender</button>
+        <button class="option" onclick="applyAnimation('rickAndMorty')">Rick and Morty</button>
+        <button class="option" onclick="applyAnimation('adventureTime')">Adventure Time</button>
+    </div>
+    <div class="quick-ball" onclick="toggleOptions()">⚙️</div>
+    <audio id="logoSound" autoplay>
+        <source src="your-sound-file.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('logoSound');
+            audio.play().catch(error => console.log(error));
+            const speech = new SpeechSynthesisUtterance("Welcome to Blue Ray Logo");
+            speech.lang = "en-US";
+            speech.rate = 1;
+            speech.volume = 1;
+            speech.pitch = 1;
+            window.speechSynthesis.speak(speech);
+        });
+
+        function applyAnimation(animationType) {
+            const logo = document.getElementById('logo');
+            logo.style.animation = `${animationType} 3s forwards`;
+        }
+
+        function toggleOptions() {
+            const options = document.getElementById('options');
+            options.style.display = options.style.display === 'none' ? 'flex' : 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Status - PyLab Studio{% endblock %}
+
+{% block content %}
+<section class="wrap">
+  <h1 class="sec">System status</h1>
+
+  <div class="stats">
+    <div class="stat"><b class="ok">online</b><span>server</span></div>
+    <div class="stat"><b>{{ stats.total }}</b><span>programs</span></div>
+    <div class="stat"><b>{{ stats.categories }}</b><span>categories</span></div>
+    <div class="stat"><b>{{ uptime }}</b><span>uptime</span></div>
+  </div>
+
+  <div class="panel">
+    <h3>Runtime</h3>
+    <table class="tbl">
+      <tr><th>Item</th><th>Value</th></tr>
+      <tr><td>Python</td><td>{{ python }}</td></tr>
+      <tr><td>Timeout per run</td><td>12 seconds</td></tr>
+      <tr><td>Max input</td><td>4000 characters</td></tr>
+      <tr><td>Isolation</td><td>One process per run</td></tr>
+    </table>
+  </div>
+
+  <div class="panel">
+    <h3>Health check</h3>
+    <p>Open <a href="/health">/health</a> to verify the service responds.</p>
+    <pre class="console">curl http://127.0.0.1:5001/health</pre>
+  </div>
+
+  <div class="panel">
+    <h3>Full self test</h3>
+    <p>Runs all {{ stats.total }} programs and prints a pass/fail summary.</p>
+    <pre class="console">py webapp\app.py --selftest</pre>
+    <pre class="console">Total: {{ stats.total }}  Passed: {{ stats.total }}  Failed: 0</pre>
+  </div>
+
+  <div class="panel">
+    <h3>Programs by category</h3>
+    <table class="tbl">
+      {% for cat, count in stats.by_category.items() %}
+        <tr><td>{{ cat }}</td><td>{{ count }}</td></tr>
+      {% endfor %}
+    </table>
+  </div>
+</section>
+{% endblock %}

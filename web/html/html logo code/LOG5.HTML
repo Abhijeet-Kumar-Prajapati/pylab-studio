@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realistic Animated Human Heart</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.11.3/brython.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/7/7a/Space_star_background.png') repeat;
+            animation: moveStars 50s linear infinite;
+        }
+        
+        .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            clip-path: path("M50 15 C20 -10, -10 50, 50 90 C110 50, 80 -10, 50 15 Z");
+            animation: beat 0.8s infinite alternate;
+        }
+        
+        @keyframes beat {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.2); }
+        }
+    </style>
+</head>
+<body onload="brython()">
+    <div class="stars"></div>
+    <div class="heart" id="heart"></div>
+    
+    <script type="text/python">
+        from browser import document
+
+        def change_heart(event):
+            heart = document["heart"]
+            heart.style.backgroundColor = "darkred"
+            heart.style.transition = "background-color 0.5s"
+            
+        document["heart"].bind("click", change_heart)
+    </script>
+</body>
+</html>

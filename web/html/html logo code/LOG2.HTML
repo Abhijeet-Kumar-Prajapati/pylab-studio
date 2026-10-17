@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Logo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #121212;
+        }
+        .logo {
+            font-size: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: fixed;
+            left: 20px;
+            top: 100px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .option {
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #ff4500;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .option:hover {
+            transform: scale(1.1);
+            background-color: #ff6347;
+        }
+
+        .quick-ball {
+            position: fixed;
+            left: 20px;
+            top: 50px;
+            width: 50px;
+            height: 50px;
+            background-color: #ff4500;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .quick-ball:hover {
+            transform: scale(1.2);
+            background-color: #ff6347;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #ffffff; }
+            to { text-shadow: 0 0 20px #ff4500; }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        @keyframes colorChange {
+            0% { color: red; }
+            25% { color: blue; }
+            50% { color: green; }
+            75% { color: yellow; }
+            100% { color: purple; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        @keyframes flip {
+            0% { transform: rotateX(0deg); }
+            100% { transform: rotateX(360deg); }
+        }
+        
+        @keyframes zoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="logo" id="logo">My Logo</div>
+    <div class="options" id="options">
+        <button class="option" onclick="applyAnimation('glow')">Glow</button>
+        <button class="option" onclick="applyAnimation('rotate')">Rotate</button>
+        <button class="option" onclick="applyAnimation('colorChange')">Color Change</button>
+        <button class="option" onclick="applyAnimation('bounce')">Bounce</button>
+        <button class="option" onclick="applyAnimation('pulse')">Pulse</button>
+        <button class="option" onclick="applyAnimation('shake')">Shake</button>
+        <button class="option" onclick="applyAnimation('flip')">Flip</button>
+        <button class="option" onclick="applyAnimation('zoom')">Zoom</button>
+    </div>
+    <div class="quick-ball" onclick="toggleOptions()">⚙️</div>
+    <audio id="logoSound" autoplay>
+        <source src="your-sound-file.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('logoSound');
+            audio.play().catch(error => console.log(error));
+            const speech = new SpeechSynthesisUtterance("Welcome to My Logo");
+            speech.lang = "en-US";
+            speech.rate = 1;
+            speech.volume = 1;
+            speech.pitch = 1;
+            window.speechSynthesis.speak(speech);
+        });
+
+        function applyAnimation(animationType) {
+            const logo = document.getElementById('logo');
+            logo.style.animation = `${animationType} 3s infinite alternate`;
+        }
+
+        function toggleOptions() {
+            const options = document.getElementById('options');
+            options.style.display = options.style.display === 'none' ? 'flex' : 'none';
+        }
+    </script>
+</body>
+</html>

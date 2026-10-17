@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Setup - PyLab Studio{% endblock %}
+
+{% block content %}
+<section class="wrap">
+  <h1 class="sec">Setup &amp; download</h1>
+  <p class="lead">Everything runs locally. No cloud, no account, no tracking.</p>
+
+  <div class="panel">
+    <h3>1. Requirements</h3>
+    <ul class="steps">
+      <li>Python 3.8 or newer &mdash; check with <code>py --version</code></li>
+      <li>Flask &mdash; <code>py -m pip install flask</code></li>
+      <li>Everything else is standard library</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>2. Install everything (one command)</h3>
+    <pre class="console">setup.bat                         # Windows
+py setup.py                       # any platform</pre>
+    <p>Creates a <code>.venv</code>, installs the packages, then verifies every program
+      byte-compiles and runs the full self-test.</p>
+    <p class="dim">Already set up? Just check what is missing:
+      <code>py setup.py --check</code></p>
+  </div>
+
+  <div class="panel">
+    <h3>3. Start the website</h3>
+    <pre class="console">run_website.bat          &nbsp;# Windows, double click
+py webapp\app.py          # any platform</pre>
+    <p>Then open <a href="http://127.0.0.1:5001">http://127.0.0.1:5001</a></p>
+  </div>
+
+  <div class="panel">
+    <h3>4. Or use the console menu</h3>
+    <pre class="console">run.bat</pre>
+    <p>Same programs, straight in the terminal. Press <code>0</code> to exit.</p>
+  </div>
+
+  <div class="panel">
+    <h3>5. Verify everything</h3>
+    <pre class="console">test.bat                          # compile + smoke test
+py webapp\app.py --selftest       # run all {{ stats.total }} programs</pre>
+  </div>
+
+  <div class="panel">
+    <h3>Download the package</h3>
+    {% if zip_ready %}
+      <p class="ok">Package is ready.</p>
+    {% endif %}
+    <a class="btn big" href="/download">&#11015; Download project (.zip)</a>
+    <p class="dim">Click to build the zip if it does not exist yet, then download it.
+      You can also grab a single program from its page, or
+      <a href="/export.csv">export the catalogue as CSV</a>.</p>
+  </div>
+
+  <div class="panel">
+    <h3>Command cheat sheet</h3>
+    <table class="tbl">
+      <tr><th>Command</th><th>What it does</th></tr>
+      <tr><td><code>setup.bat</code></td><td>Create .venv, install packages, verify</td></tr>
+      <tr><td><code>run.bat</code></td><td>Start the all-in-one console menu</td></tr>
+      <tr><td><code>run_website.bat</code></td><td>Start PyLab Studio and open the browser</td></tr>
+      <tr><td><code>run_web_app.bat</code></td><td>Start the Flask PayPal demo app on port 5000</td></tr>
+      <tr><td><code>test.bat</code></td><td>Compile everything and smoke test</td></tr>
+      <tr><td><code>build.bat</code></td><td>Rebuild and regenerate reports</td></tr>
+      <tr><td><code>list-programs.bat</code></td><td>Show the full catalogue</td></tr>
+    </table>
+  </div>
+</section>
+{% endblock %}

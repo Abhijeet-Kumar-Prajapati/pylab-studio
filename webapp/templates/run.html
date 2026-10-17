@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}{{ program.name }} - PyLab Studio{% endblock %}
+
+{% block content %}
+<section class="wrap run">
+  <a class="back" href="/programs">&larr; All programs</a>
+
+  <div class="runhead">
+    <h1>{{ program.name }}</h1>
+    <span class="badge">{{ program.category }}</span>
+    <span class="badge alt">{{ program.group }}</span>
+    <button class="favbtn" data-fav="{{ program.id }}" aria-pressed="false" title="Add to favourites">&#9734;</button>
+  </div>
+  <p class="lead">{{ program.description }}</p>
+  <code class="path">{{ program.path }}</code>
+
+  <div class="rungrid">
+    <form method="post" class="panel" id="runForm">
+      <label for="input">Input
+        <span class="hint">one value per line, in the order the program asks</span>
+      </label>
+      <textarea id="input" name="input" rows="8"
+                placeholder="Example:&#10;5&#10;3">{{ request.form.get('input', '') }}</textarea>
+
+      <div class="btnrow">
+        <button type="submit" class="btn big">&#9654; Run program</button>
+        <button type="button" class="btn ghost" id="sampleBtn"
+                data-sample="{{ program.sample }}">Fill sample</button>
+        <button type="button" class="btn ghost" id="clearBtn">Clear</button>
+      </div>
+    </form>
+
+    <aside class="panel side">
+      <h3>Actions</h3>
+      <a class="btn ghost sm block" href="{{ url_for('source', program_id=program.id) }}">View source</a>
+      <a class="btn ghost sm block" href="{{ url_for('download_program', program_id=program.id) }}">Download .py</a>
+      <a class="btn ghost sm block" href="{{ url_for('run', program_id=program.id) }}">Reload page</a>
+
+      <h3 class="mt">Recent runs</h3>
+      <div id="historyBox"><p class="dim small">Nothing yet.</p></div>
+    </aside>
+  </div>
+
+  {% if result %}
+    <div class="panel" id="outputBox"
+         data-program-id="{{ program.id }}"
+         data-program-name="{{ program.name }}"
+         data-ok="{{ '1' if result.ok else '0' }}"
+         data-seconds="{{ result.seconds if result.seconds is defined else '' }}">
+      <div class="outhead">
+        <h3>Output</h3>
+        <div>
+          {% if result.stdout %}
+            <button class="btn ghost sm" data-copy="stdoutBox">Copy</button>
+          {% endif %}
+        </div>
+      </div>
+      <pre class="console" id="stdoutBox">{{ result.stdout or '(no output)' }}</pre>
+      {% if result.error %}<p class="err">{{ result.error }}</p>{% endif %}
+      {% if result.stderr %}<pre class="console err">{{ result.stderr }}</pre>{% endif %}
+      <p class="status">
+        Exit code: <b>{{ result.returncode if result.returncode is not none else 'stopped' }}</b>
+        &middot; Time: {{ result.seconds }}s
+        &middot; {% if result.ok %}<span class="ok">success</span>{% else %}<span class="bad">failed</span>{% endif %}
+      </p>
+    </div>
+  {% endif %}
+
+  {% if related %}
+    <h2 class="sec">More in {{ program.category }}</h2>
+    <div class="grid">
+      {% for p in related %}
+        <article class="card">
+          <button class="favbtn small" data-fav="{{ p.id }}" aria-pressed="false" title="Favourite">&#9734;</button>
+          <h3>{{ p.name }}</h3>
+          <p>{{ p.description }}</p>
+          <a class="btn sm" href="{{ url_for('run', program_id=p.id) }}">Run</a>
+        </article>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

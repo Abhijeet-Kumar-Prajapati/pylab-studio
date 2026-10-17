@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}About - PyLab Studio{% endblock %}
+
+{% block content %}
+<section class="wrap">
+  <h1 class="sec">About</h1>
+  <p class="lead">A personal Python project collected into one runnable place.</p>
+
+  <div class="panel">
+    <h3>What this is</h3>
+    <p>{{ stats.total }} small Python programs &mdash; maths, converters, string tools, games,
+      finance, health and utilities &mdash; plus a Flask website that runs any
+      of them from the browser.</p>
+  </div>
+
+  <div class="panel">
+    <h3>Project layout</h3>
+    <table class="tbl">
+      <tr><th>Path</th><th>Contents</th></tr>
+      <tr><td><code>main.py</code></td><td>All-in-one console menu (entry point)</td></tr>
+      <tr><td><code>webapp/</code></td><td>Flask website (this site)</td></tr>
+      <tr><td><code>programs/general/</code></td><td>Standalone console programs</td></tr>
+      <tr><td><code>programs/utilities/</code></td><td>Small apps: notes, contacts, timers</td></tr>
+      <tr><td><code>projects/</code></td><td>PayPal demo (Flask) and Charvis voice assistant</td></tr>
+      
+      <tr><td><code>learning/</code></td><td>Earlier practice exercises</td></tr>
+      <tr><td><code>web/</code>, <code>android/</code></td><td>HTML and mobile projects</td></tr>
+      <tr><td><code>docs/</code></td><td>Catalogue, audit report, test report</td></tr>
+      <tr><td><code>tools/</code></td><td>Code generator for the console programs</td></tr>
+    </table>
+  </div>
+
+  <div class="panel">
+    <h3>Design choices</h3>
+    <ul class="steps">
+      <li>Console programs use only the Python standard library</li>
+      <li>Every program has a docstring, input validation and a clean exit</li>
+      <li>The website only runs files from whitelisted folders</li>
+      <li>Each run uses a fresh process, so programs never affect each other</li>
+      <li>A 12 second timeout protects the server from runaway loops</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h3>Credits</h3>
+    <p>Built with Python and Flask. Dark and light themes included.</p>
+  </div>
+</section>
+{% endblock %}

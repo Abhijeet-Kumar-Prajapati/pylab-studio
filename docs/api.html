@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REST API - Multi Program</title>
+<meta name="description" content="133 Python programs - maths, converters, strings, games, finance and health. Run them in the browser, no installation needed.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-theme="dark">
+<header class="topbar"><div class="wrap bar">
+  <a class="brand" href="index.html"><span class="logo">MP</span><span>Multi<strong>Program</strong></span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="programs.html">Programs</a>
+    <a href="run.html">Runner</a>
+    <a href="categories.html">Categories</a>
+    <a href="setup.html">Setup</a>
+    <a href="api.html">API</a>
+    <a href="about.html">About</a>
+    <a class="dl" href="https://github.com/Abhijeet-Kumar-Prajapati/pylab-studio/archive/refs/heads/main.zip" download>Download</a>
+  </nav>
+  <button class="theme" id="themeBtn" title="Toggle theme">&#9681;</button>
+</div></header>
+<main>
+<section class="wrap">
+  <h1 class="sec">REST API</h1>
+  <p class="lead">Available when you run the project locally: <code>http://127.0.0.1:5001</code></p>
+
+  <div class="panel"><h3>GET /api/programs</h3>
+    <pre class="console">curl http://127.0.0.1:5001/api/programs</pre>
+    <pre class="console">[{ "number":1, "id":"general-absolute",
+   "name":"Absolute", "category":"Math/Number",
+   "description":"Returns the absolute value of a number.",
+   "group":"General", "path":"programs/general/absolute.py" }]</pre></div>
+
+  <div class="panel"><h3>GET /api/program/&lt;id&gt;</h3>
+    <pre class="console">curl http://127.0.0.1:5001/api/program/general-area_circle</pre></div>
+
+  <div class="panel"><h3>POST /api/run</h3>
+    <pre class="console">curl -X POST http://127.0.0.1:5001/api/run \
+  -H "Content-Type: application/json" \
+  -d '{"id":"general-area_circle","input":"5"}'</pre>
+    <pre class="console">{"ok":true,"returncode":0,"seconds":0.04,
+ "stderr":"","stdout":"Radius: Area = 78.5398"}</pre></div>
+
+  <div class="panel"><h3>GET /health &nbsp;&middot;&nbsp; /api/stats &nbsp;&middot;&nbsp; /download</h3>
+    <pre class="console">curl http://127.0.0.1:5001/health
+{"status":"ok","programs":133,"uptime":"0:04:12"}</pre></div>
+
+  <div class="panel"><h3>Limits</h3>
+    <ul class="steps">
+      <li>Input max 4000 characters</li>
+      <li>12 second timeout per run</li>
+      <li>Only whitelisted folders can execute</li>
+      <li>One process per run</li>
+    </ul></div>
+</section>
+</main>
+<footer class="footer"><div class="wrap foot">
+  <div><p><strong>Multi Program - All in One</strong></p>
+  <p class="dim">Runs in your browser. No server, no installation.</p></div>
+  <div class="dim">
+    <a href="https://github.com/Abhijeet-Kumar-Prajapati/pylab-studio">GitHub</a> &middot;
+    <a href="https://github.com/Abhijeet-Kumar-Prajapati/pylab-studio/blob/main/README.md">README</a>
+  </div>
+</div></footer>
+<script src="assets/data.js"></script>
+<script src="assets/demos.js"></script>
+<script src="assets/site.js"></script>
+</body></html>

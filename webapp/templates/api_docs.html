@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}API - PyLab Studio{% endblock %}
+
+{% block content %}
+<section class="wrap">
+  <h1 class="sec">REST API</h1>
+  <p class="lead">Base URL <code>http://127.0.0.1:5001</code>. All responses are JSON.</p>
+
+  <div class="panel">
+    <h3>GET /api/programs</h3>
+    <p class="dim">Every program in the catalogue ({{ stats.total }} items).</p>
+    <pre class="console">[
+  {
+    "number": 1,
+    "id": "general-absolute",
+    "name": "Absolute",
+    "category": "Math/Number",
+    "description": "Returns the absolute value of a number.",
+    "group": "General",
+    "path": "programs/general/absolute.py",
+    "size_kb": 1.1
+  }
+]</pre>
+  </div>
+
+  <div class="panel">
+    <h3>GET /api/program/&lt;id&gt;</h3>
+    <p class="dim">One program by id. Returns 404 if unknown.</p>
+    <pre class="console">curl http://127.0.0.1:5001/api/program/general-area_circle</pre>
+  </div>
+
+  <div class="panel">
+    <h3>GET /source/&lt;id&gt; &middot; GET /download/&lt;id&gt;</h3>
+    <p class="dim">View the source in the browser, or download a single
+      <code>.py</code> file.</p>
+    <pre class="console">curl -O http://127.0.0.1:5001/download/general-area_circle</pre>
+  </div>
+
+  <div class="panel">
+    <h3>GET /export.csv</h3>
+    <p class="dim">The whole catalogue as a CSV file.</p>
+    <pre class="console">curl -O http://127.0.0.1:5001/export.csv</pre>
+  </div>
+
+  <div class="panel">
+    <h3>POST /api/run</h3>
+    <p class="dim">Run a program. Body: <code>{"id": "...", "input": "line1\nline2"}</code></p>
+    <pre class="console">curl -X POST http://127.0.0.1:5001/api/run \
+  -H "Content-Type: application/json" \
+  -d '{"id":"general-area_circle","input":"5"}'</pre>
+    <pre class="console">{"ok":true,"returncode":0,"stderr":"",
+ "stdout":"Radius: Area = 78.5398","seconds":0.05}</pre>
+  </div>
+
+  <div class="panel">
+    <h3>GET /api/stats</h3>
+    <pre class="console">curl http://127.0.0.1:5001/api/stats</pre>
+  </div>
+
+  <div class="panel">
+    <h3>GET /health</h3>
+    <pre class="console">curl http://127.0.0.1:5001/health
+{"status":"ok","programs":143,"uptime":"0:04:12","time":"..."}</pre>
+  </div>
+
+  <div class="panel">
+    <h3>Limits</h3>
+    <ul class="steps">
+      <li>Input max {{ 4000 }} characters</li>
+      <li>Each run is stopped after 12 seconds</li>
+      <li>Only programs inside the whitelisted folders can run</li>
+    </ul>
+  </div>
+</section>
+{% endblock %}

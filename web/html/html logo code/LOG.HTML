@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Space Background</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: black;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/7/7a/Space_star_background.png') repeat;
+            animation: moveStars 50s linear infinite;
+        }
+        
+        @keyframes moveStars {
+            from { background-position: 0 0; }
+            to { background-position: -10000px 10000px; }
+        }
+        
+        .circle {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulseCircle 3s infinite;
+        }
+        
+        @keyframes pulseCircle {
+            0% { transform: scale(1) translate(-50%, -50%); opacity: 1; }
+            50% { transform: scale(1.5) translate(-50%, -50%); opacity: 0.5; }
+            100% { transform: scale(1) translate(-50%, -50%); opacity: 1; }
+        }
+        
+        .logo {
+            font-size: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            color: #00f;
+            text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            position: fixed;
+            left: 20px;
+            top: 100px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 3px;
+            border-radius: 3px;
+            display: none;
+        }
+
+        .option {
+            padding: 3px 6px;
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            background-color: #ff4500;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .option:hover {
+            transform: scale(1.1);
+            background-color: #ff6347;
+        }
+        
+        .quick-ball {
+            position: fixed;
+            left: 20px;
+            top: 50px;
+            width: 30px;
+            height: 30px;
+            background-color: #ff4500;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            font-size: 10px;
+        }
+        
+        .quick-ball:hover {
+            transform: scale(1.2);
+            background-color: #ff6347;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="circle"></div>
+    <div class="logo" id="logo">Blue Ray Logo</div>
+    <div class="options" id="options">
+        <button class="option" onclick="applyBigBang()">Big Bang</button>
+    </div>
+    <div class="quick-ball" onclick="toggleOptions()">⚙️</div>
+    <script>
+        function applyBigBang() {
+            document.body.style.animation = "bigBangBackground 3s forwards";
+            const logo = document.getElementById('logo');
+            logo.style.animation = "bigBangText 3s forwards";
+        }
+
+        function toggleOptions() {
+            const options = document.getElementById('options');
+            options.style.display = options.style.display === 'none' ? 'flex' : 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}PyLab Studio - run every program in your browser{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="wrap">
+    <span class="pill">Python &middot; Flask &middot; no external UI libraries</span>
+    <h1>{{ tagline or 'Every Python program,<br>one click away.' }}</h1>
+    <p class="lead">{{ stats.total }} ready-to-run programs &mdash; calculators, converters,
+      string tools, games, finance and health utilities. Pick one, type your input,
+      see the output.</p>
+    <div class="cta">
+      <a class="btn big" href="/programs">Browse programs</a>
+      <a class="btn ghost big" href="/download">&#11015; Download project</a>
+      <a class="btn ghost big" href="/setup">Setup guide</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="stats">
+    <div class="stat"><b>{{ stats.total }}</b><span>programs</span></div>
+    <div class="stat"><b>{{ stats.categories }}</b><span>categories</span></div>
+    <div class="stat"><b>{{ stats.groups }}</b><span>collections</span></div>
+    <div class="stat"><b>{{ uptime }}</b><span>uptime</span></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2 class="sec">Popular programs</h2>
+  <div class="grid">
+    {% for p in featured %}
+      <article class="card">
+        <button class="favbtn small" data-fav="{{ p.id }}" aria-pressed="false" title="Favourite">&#9734;</button>
+        <span class="num">#{{ p.number }}</span>
+        <h3>{{ p.name }}</h3>
+        <span class="badge">{{ p.category }}</span>
+        <p>{{ p.description }}</p>
+        <div class="btnrow">
+          <a class="btn sm" href="{{ url_for('run', program_id=p.id) }}">Run</a>
+          <a class="btn ghost sm" href="{{ url_for('source', program_id=p.id) }}">Source</a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+  <p class="center"><a class="btn ghost" href="/programs">See all {{ stats.total }} programs &rarr;</a></p>
+</section>
+
+<section class="wrap">
+  <h2 class="sec">What you get</h2>
+  <div class="grid three">
+    <article class="card">
+      <h3>&#9881; Runs anything</h3>
+      <p>Each program starts in a fresh Python process, so nothing collides and nothing
+        leaks between runs.</p>
+    </article>
+    <article class="card">
+      <h3>&#11088; Favourites</h3>
+      <p>Star the programs you use often and filter down to just those, in one click.</p>
+    </article>
+    <article class="card">
+      <h3>&#128269; Search &amp; filter</h3>
+      <p>Find anything instantly by name, description or category &mdash; or press
+        <kbd>/</kbd> anywhere to jump to search.</p>
+    </article>
+    <article class="card">
+      <h3>&#128203; REST API</h3>
+      <p>Everything the UI does is available as JSON, plus a CSV export of the whole
+        catalogue.</p>
+    </article>
+    <article class="card">
+      <h3>&#128274; Safe by design</h3>
+      <p>Only whitelisted folders can run. Paths are resolved and verified, with a hard
+        timeout on every run.</p>
+    </article>
+    <article class="card">
+      <h3>&#127968; Download</h3>
+      <p>Grab the whole project as a zip, or fetch any single program as a
+        <code>.py</code> file.</p>
+    </article>
+  </div>
+</section>
+{% endblock %}

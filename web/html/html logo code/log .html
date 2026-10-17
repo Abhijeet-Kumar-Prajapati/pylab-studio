@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Logo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+        }
+        .logo {
+            font-size: 50px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            animation: glow 1.5s infinite alternate, rotate 3s infinite linear;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #ffffff;
+            }
+            to {
+                text-shadow: 0 0 20px #ff4500;
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotateY(0deg);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">HERO</div>
+    <audio id="logoSound" autoplay>
+        <source src="your-sound-file.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        // Ensure audio plays on some mobile browsers
+        window.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('logoSound');
+            audio.play().catch(error => console.log(error));
+            
+            // Speak text using Web Speech API
+            const speech = new SpeechSynthesisUtterance("HELLO! I AM HERO. I AM Artificial Intelligence. HOW CAN HELP YOU");
+            speech.lang = "en-US";
+            speech.rate = 1;
+            speech.volume = 1;
+            speech.pitch = 1;
+            window.speechSynthesis.speak(speech);
+        });
+    </script>
+</body>
+</html>

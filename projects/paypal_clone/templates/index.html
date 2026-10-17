@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Clone</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to PayPal Clone</h1>
+        </header>
+        <main>
+            <div class="auth-buttons">
+                <a href="{{ url_for('login') }}" class="btn">Login</a>
+                <a href="{{ url_for('register') }}" class="btn">Register</a>
+            </div>
+            <div class="features">
+                <h2>Features</h2>
+                <ul>
+                    <li>Send and receive money instantly</li>
+                    <li>Track your transactions</li>
+                    <li>Secure payments</li>
+                    <li>Easy to use interface</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

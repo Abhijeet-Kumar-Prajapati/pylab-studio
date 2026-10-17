@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PayPal Clone</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <h1>Dashboard</h1>
+                <div class="nav-links">
+                    <a href="{{ url_for('send_money') }}" class="btn">Send Money</a>
+                    <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="dashboard-content">
+                <div class="balance-card">
+                    <h2>Your Balance</h2>
+                    <p class="balance">${{ "%.2f"|format(current_user.balance) }}</p>
+                </div>
+                
+                <div class="transactions">
+                    <h2>Transaction History</h2>
+                    {% if transactions %}
+                        <div class="transaction-list">
+                            {% for transaction in transactions %}
+                                <div class="transaction-item">
+                                    {% if transaction.sender_id == current_user.id %}
+                                        <span class="type outgoing">Sent</span>
+                                        <span class="amount">-${{ "%.2f"|format(transaction.amount) }}</span>
+                                    {% else %}
+                                        <span class="type incoming">Received</span>
+                                        <span class="amount">+${{ "%.2f"|format(transaction.amount) }}</span>
+                                    {% endif %}
+                                    <span class="description">{{ transaction.description }}</span>
+                                    <span class="date">{{ transaction.timestamp.strftime('%Y-%m-%d %H:%M') }}</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>No transactions yet</p>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

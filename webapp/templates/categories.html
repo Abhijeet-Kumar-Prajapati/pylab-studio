@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Categories - PyLab Studio{% endblock %}
+
+{% block content %}
+<section class="wrap">
+  <h1 class="sec">Categories</h1>
+  <p class="lead">{{ stats.total }} programs grouped into {{ stats.categories }} categories.</p>
+
+  {% for cat, items in by_category.items() %}
+    <div class="catblock">
+      <h2>{{ cat }} <span class="dim">({{ items|length }})</span></h2>
+      <div class="grid">
+        {% for p in items %}
+          <article class="card">
+            <span class="num">#{{ p.number }}</span>
+            <h3>{{ p.name }}</h3>
+            <p>{{ p.description }}</p>
+            <a class="btn sm" href="{{ url_for('run', program_id=p.id) }}">Run</a>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</section>
+{% endblock %}
